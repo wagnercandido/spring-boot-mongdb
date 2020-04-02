@@ -1,5 +1,6 @@
 package com.javacourse.mongo.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -15,5 +16,8 @@ public interface PostRepository extends MongoRepository<Post, String> {
 
 	@Query("{'title': {$regex: ?0, $options: 'i'}}")
 	List<Post> findTitle(String text);
+
+	@Query("{ $and: [ {date: {$gte: ?1} } , {date: {$lte: ?2} } , { $or: [ {'title': {$regex: ?0, $options: 'i'}}, {'body': {$regex: ?0, $options: 'i'}}, {'comments.text': {$regex: ?0, $options: 'i'}} ] } ] }")
+	List<Post> findFilter(String text, Date minDate, Date maxDate);
 
 }
