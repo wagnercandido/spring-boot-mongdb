@@ -33,8 +33,6 @@ public class Post implements Serializable {
 		this.author = author;
 	}
 
-
-
 	public String getId() {
 		return id;
 	}
@@ -74,7 +72,6 @@ public class Post implements Serializable {
 	public void setAuthor(AuthorDTO author) {
 		this.author = author;
 	}
-	
 
 	@Override
 	public int hashCode() {
